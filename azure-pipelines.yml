@@ -29,8 +29,14 @@ steps:
     CleanTargetFolder: true
     OverWrite: true
 
-- task: PublishBuildArtifacts@1
+#- task: PublishBuildArtifacts@1
+#  inputs:
+#    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#    ArtifactName: 'HelloWorld'
+#    publishLocation: 'Container'
+
+- task: PublishPipelineArtifact@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'HelloWorld'
-    publishLocation: 'Container'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifact: 'HelloWorld'
+    publishLocation: 'pipeline'
